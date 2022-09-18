@@ -24,3 +24,10 @@ test_script:
   - cmd: set PATH=C:\projects\elsed\build-opencv\bin\Release
   - cmd: C:\projects\elsed\build\Release\elsed_main.exe C:/projects/elsed/images/P1020829.jpg
 
+artifacts:
+  - path: .\build\ELSED_long.png
+    name: ELSED_long.png
+  - path: .\build\ELSED_short.png
+    name: ELSED_short.png
+  - path: .\build\ED_lines.png
+    name: ED_lines.png
