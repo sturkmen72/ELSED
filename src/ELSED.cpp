@@ -280,10 +280,10 @@ void ELSED::drawAnchorPoints(const uint8_t *dirImg,
       } else {
         // Get the segment angle
         Segment s = detectedSeg.getEndpoints();
-        theta = segAngle(s) + M_PI_2;
+        theta = segAngle(s) + CV_PI / 2;
         // Force theta to be in range [0, M_PI)
-        while (theta < 0) theta += M_PI;
-        while (theta >= M_PI) theta -= M_PI;
+        while (theta < 0) theta += CV_PI;
+        while (theta >= CV_PI) theta -= CV_PI;
 
         // Calculate the line equation as the cross product os the endpoints
         cv::Vec3f l = cv::Vec3f(s[0], s[1], 1).cross(cv::Vec3f(s[2], s[3], 1));
@@ -343,9 +343,9 @@ void ELSED::drawAnchorPoints(const uint8_t *dirImg,
           angle = std::atan2(pDy[indexInArray], pDx[indexInArray]);
 #endif
           // Force theta to be in range [0, M_PI)
-          if (angle < 0) angle += M_PI;
-          if (angle >= M_PI) angle -= M_PI;
-          circularDist(theta, angle, M_PI) > validationTh ? nOriOutliers++ : nOriInliers++;
+          if (angle < 0) angle += CV_PI;
+          if (angle >= CV_PI) angle -= CV_PI;
+          circularDist(theta, angle, CV_PI) > validationTh ? nOriOutliers++ : nOriInliers++;
         }
 
         valid = nOriInliers > nOriOutliers;

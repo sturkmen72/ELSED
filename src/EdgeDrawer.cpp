@@ -727,10 +727,10 @@ bool EdgeDrawer::canSegmentBeExtended(FullSegmentInfo &segment,
       // Get the segment angle
       eq = segment.getLineEquation();
       // Get the angle perpendicular to the fitted line
-      theta = std::atan2(eq[0], eq[1]) + M_PI_2;
-      // Force theta to be in range [0, M_PI)
-      while (theta < 0) theta += M_PI;
-      while (theta >= M_PI) theta -= M_PI;
+      theta = std::atan2(eq[0], eq[1]) + CV_PI / 2;
+      // Force theta to be in range [0, CV_PI)
+      while (theta < 0) theta += CV_PI;
+      while (theta >= CV_PI) theta -= CV_PI;
 
       // Evaluation of the extension pixels based on the auto-correlation gradient matrix
       // Elements of the matrix M = [[a, b], [b, d]]
@@ -757,13 +757,13 @@ bool EdgeDrawer::canSegmentBeExtended(FullSegmentInfo &segment,
       s1 = a * a + 2 * b * b + d * d;
       s2 = std::sqrt(tmp * tmp + 4 * b * b * (a + d) * (a + d));
       eigen_angle = -0.5f * std::atan2(2 * a * b + 2 * b * d, tmp);
-      while (eigen_angle < 0) eigen_angle += M_PI;
-      while (eigen_angle >= M_PI) eigen_angle -= M_PI;
+      while (eigen_angle < 0) eigen_angle += CV_PI;
+      while (eigen_angle >= CV_PI) eigen_angle -= CV_PI;
 
       // This conditions requires the most important eigenvalue to be significantly bigger than the second one
       fitsEigenvaluesCond = std::sqrt((s1 + s2) / (s1 - s2 + 0.00001)) > junctionEigenvalsTh;
       // This condition requires that the first eigenvector has a similar angle to the segment.
-      fitsAngleCond = circularDist(theta, eigen_angle, M_PI) < junctionAngleTh;
+      fitsAngleCond = circularDist(theta, eigen_angle, CV_PI) < junctionAngleTh;
       // LOGD << "Fits eigenvalues: " << fitsEigenvaluesCond << ", fits angle: " << fitsAngleCond;
 
       if (!fitsEigenvaluesCond || !fitsAngleCond) {

@@ -35,7 +35,7 @@ struct ELSEDParams {
   double junctionEigenvalsTh = 10;
   // the difference between the perpendicular segment direction and the direction of the gradient
   // in the region to be validated must be less than junctionAngleTh radians
-  double junctionAngleTh = 10 * (M_PI / 180.0);
+  double junctionAngleTh = 10 * (CV_PI / 180.0);
   // The threshold over the validation criteria. For ELSED, it is the gradient angular error in pixels.
   double validationTh = 0.15;
 

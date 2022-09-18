@@ -28,7 +28,7 @@ class EdgeDrawer {
              bool treatJunctions = true,
              std::vector<int> mListOfJunctionSizes = {5, 7, 9},
              double junctionEigenvalsTh = 10,
-             double junctionAngleTh = 10 * (M_PI / 180.0));
+             double junctionAngleTh = 10 * (CV_PI / 180.0));
 
   void init(const LineDetectionExtraInfoPtr &gradientInfo, cv::Mat &edgeImage);
 
@@ -117,7 +117,7 @@ class EdgeDrawer {
   bool treatJunctions = true;
   std::vector<int> listOfJunctionSizes = {5, 7, 9};
   double junctionEigenvalsTh = 10;
-  double junctionAngleTh = 10 * (M_PI / 180.0);
+  double junctionAngleTh = 10 * (CV_PI / 180.0);
 };
 
 typedef std::shared_ptr<EdgeDrawer> EdgeDrawerPtr;
